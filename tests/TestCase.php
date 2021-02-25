@@ -2,16 +2,17 @@
 
 namespace WebId\Flan\Tests;
 
+use Dotenv\Dotenv;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use Orchestra\Testbench\TestCase as Orchestra;
 use WebId\Flan\Database\Seeders\FeedModeTableSeeder;
 use WebId\Flan\Database\Seeders\IngredientPizzaTableSeeder;
 use WebId\Flan\Database\Seeders\IngredientTableSeeder;
 use WebId\Flan\Database\Seeders\PizzaTableSeeder;
 use WebId\Flan\Filters\PizzaFilter;
 use WebId\Flan\FlanServiceProvider;
-use Orchestra\Testbench\TestCase as Orchestra;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class TestCase extends Orchestra
 {
@@ -33,33 +34,32 @@ class TestCase extends Orchestra
 
     protected function getEnvironmentSetUp($app)
     {
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
+        $dotenv->load();
+
         config()->set('database.default', 'mysql');
         config()->set('database.connections.mysql', [
             'driver' => 'mysql',
-            'url' => env('DATABASE_URL'),
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE_FILTER_SYSTEM', 'filterPackage'),
-            'username' => env('DB_USERNAME_FILTER_SYSTEM', 'root'),
-            'password' => env('DB_PASSWORD_FILTER_SYSTEM', ''),
-            'unix_socket' => env('DB_SOCKET', ''),
+            'host' => $_ENV['DB_HOST'],
+            'port' => $_ENV['DB_PORT'],
+            'database' => $_ENV['DB_DATABASE'],
+            'username' => $_ENV['DB_USERNAME'],
+            'password' => $_ENV['DB_PASSWORD'],
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
             'prefix' => '',
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
-            'options' => extension_loaded('pdo_mysql') ? array_filter([
-                \PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
-            ]) : [],
+            'options' => [],
         ]);
 
         $this->dropTables();
 
-        include_once __DIR__.'/../src/database/migrations/create_ingredients_table.php';
-        include_once __DIR__.'/../src/database/migrations/create_feed_modes_table.php';
-        include_once __DIR__.'/../src/database/migrations/create_pizzas_table.php';
-        include_once __DIR__.'/../src/database/migrations/create_ingredient_pizza_table.php';
+        include_once __DIR__.'/../src/Database/migrations/create_ingredients_table.php';
+        include_once __DIR__.'/../src/Database/migrations/create_feed_modes_table.php';
+        include_once __DIR__.'/../src/Database/migrations/create_pizzas_table.php';
+        include_once __DIR__.'/../src/Database/migrations/create_ingredient_pizza_table.php';
 
         (new \CreateIngredientsTable())->up();
         (new \CreateFeedModesTable())->up();
@@ -107,8 +107,8 @@ class TestCase extends Orchestra
     {
         DB::statement("SET FOREIGN_KEY_CHECKS = 0");
         $tables = DB::select('SHOW TABLES');
-        foreach($tables as $table){
-            Schema::drop($table->Tables_in_filterpackage);
+        foreach ($tables as $table) {
+            Schema::drop($table->Tables_in_flan);
         }
         DB::statement("SET FOREIGN_KEY_CHECKS = 1");
     }

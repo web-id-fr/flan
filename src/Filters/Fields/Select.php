@@ -2,9 +2,9 @@
 
 namespace WebId\Flan\Filters\Fields;
 
+use Illuminate\Database\Query\Builder;
 use WebId\Flan\Filters\Base\Field;
 use WebId\Flan\Filters\Base\FieldContract;
-use Illuminate\Database\Query\Builder;
 
 class Select extends Field implements FieldContract
 {

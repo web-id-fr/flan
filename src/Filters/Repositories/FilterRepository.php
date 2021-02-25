@@ -2,9 +2,9 @@
 
 namespace WebId\Flan\Filters\Repositories;
 
-use WebId\Flan\Filters\Models\Filter;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
+use WebId\Flan\Filters\Models\Filter;
 
 class FilterRepository
 {

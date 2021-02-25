@@ -9,13 +9,9 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         php: [8.0, 7.4]
-        laravel: [8.*]
         stability: [prefer-lowest, prefer-stable]
-        include:
-          - laravel: 8.*
-            testbench: 6.*
 
-    name: P${{ matrix.php }} - L${{ matrix.laravel }} - ${{ matrix.stability }} - ${{ matrix.os }}
+    name: P${{ matrix.php }} - ${{ matrix.stability }} - ${{ matrix.os }}
 
     steps:
       - name: Checkout code
@@ -32,9 +28,20 @@ jobs:
         run: |
           echo "::add-matcher::${{ runner.tool_cache }}/php.json"
           echo "::add-matcher::${{ runner.tool_cache }}/phpunit.json"
+
       - name: Install dependencies
         run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-          composer update --${{ matrix.stability }} --prefer-dist --no-interaction
+          composer install
+
+      - name: Starting MySQL
+        run: sudo systemctl start mysql.service
+
+      - name: Create Database
+        run: |
+          mysql -uroot -h127.0.0.1 -proot -e 'CREATE DATABASE IF NOT EXISTS flan;'
+
+      - name: Create .env
+        run: cp .env.example .env
+
       - name: Execute tests
         run: vendor/bin/phpunit

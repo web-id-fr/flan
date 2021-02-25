@@ -18,6 +18,6 @@ class FilterField extends Model
 
     /** @var array<string> */
     protected $casts = [
-        'content' => 'array'
+        'content' => 'array',
     ];
 }

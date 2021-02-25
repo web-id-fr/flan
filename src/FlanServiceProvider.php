@@ -22,7 +22,7 @@ class FlanServiceProvider extends ServiceProvider
             $this->commands([
                 MakeFilterClass::class,
                 MakeFilterConfig::class,
-                FilterCreate::class
+                FilterCreate::class,
             ]);
         }
     }

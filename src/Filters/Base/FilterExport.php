@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class FilterExport implements FromCollection, WithHeadings
 {
-    /** @var LengthAwarePaginator<Model>|Collection<Model>  */
+    /** @var LengthAwarePaginator<Model>|Collection<Model> */
     protected $collection;
 
     /** @var array<string> */

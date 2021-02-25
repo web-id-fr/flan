@@ -2,9 +2,9 @@
 
 namespace WebId\Flan\Filters\Fields;
 
+use Illuminate\Database\Query\Builder;
 use WebId\Flan\Filters\Base\Field;
 use WebId\Flan\Filters\Base\FieldContract;
-use Illuminate\Database\Query\Builder;
 
 class Text extends Field implements FieldContract
 {
@@ -14,7 +14,7 @@ class Text extends Field implements FieldContract
     /** @var array<string> */
     const STRATEGY_TO_OPERATOR = [
         self::_STRATEGY_CONTAINS => 'like',
-        self::_STRATEGY_IGNORE   => 'not like',
+        self::_STRATEGY_IGNORE => 'not like',
     ];
 
     /**
@@ -40,7 +40,7 @@ class Text extends Field implements FieldContract
         return [
             $fieldName => 'array',
             $fieldName .'.strategy' => 'required_with:'. $fieldName .'|in:'. $strategyList,
-            $fieldName .'.term' => 'required_with:'. $fieldName .'|string'
+            $fieldName .'.term' => 'required_with:'. $fieldName .'|string',
         ];
     }
 }

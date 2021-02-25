@@ -2,11 +2,6 @@
 
 namespace WebId\Flan\Filters\Base;
 
-use WebId\Flan\Filters\Fields\Checkbox;
-use WebId\Flan\Filters\Fields\Date;
-use WebId\Flan\Filters\Fields\Number;
-use WebId\Flan\Filters\Fields\Select;
-use WebId\Flan\Filters\Fields\Text;
 use Illuminate\Database\Query\Builder;
 
 class FieldFactory

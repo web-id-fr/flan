@@ -2,9 +2,9 @@
 
 namespace WebId\Flan\Filters\Fields;
 
+use Illuminate\Database\Query\Builder;
 use WebId\Flan\Filters\Base\Field;
 use WebId\Flan\Filters\Base\FieldContract;
-use Illuminate\Database\Query\Builder;
 
 class Checkbox extends Field implements FieldContract
 {
@@ -30,7 +30,7 @@ class Checkbox extends Field implements FieldContract
     {
         return [
             $fieldName => 'array',
-            $fieldName .'.*' => 'string'
+            $fieldName .'.*' => 'string',
         ];
     }
 }

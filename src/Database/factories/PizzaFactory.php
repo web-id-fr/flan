@@ -25,7 +25,7 @@ class PizzaFactory extends Factory
             'name' => $this->faker->name,
             'price' => $this->faker->randomFloat(2, 10, 20),
             'active' => 0,
-            'created_at' => now()
+            'created_at' => now(),
         ];
     }
 }
