@@ -1,8 +1,12 @@
-
 vendor/
-
 .DS_Store
-
 .phpunit.result.cache
-
 .idea/
+.php_cs
+.php_cs.cache
+.phpunit.result.cache
+build
+coverage
+docs
+phpunit.xml
+psalm.xml
