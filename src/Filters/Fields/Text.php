@@ -11,14 +11,14 @@ class Text extends Field implements FieldContract
     const _STRATEGY_CONTAINS = 'contains';
     const _STRATEGY_IGNORE = 'ignore';
 
-    /** @var array */
+    /** @var array<string> */
     const STRATEGY_TO_OPERATOR = [
         self::_STRATEGY_CONTAINS => 'like',
         self::_STRATEGY_IGNORE   => 'not like',
     ];
 
     /**
-     * @param array $search
+     * @param array<string> $search
      * @param string $columnName
      * @return Builder
      */

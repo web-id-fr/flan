@@ -7,7 +7,7 @@ use Illuminate\Database\Query\Builder;
 interface FieldContract
 {
     /**
-     * @param array $search
+     * @param array<string, mixed> $search
      * @param string $columnName
      * @return Builder
      */
@@ -15,7 +15,7 @@ interface FieldContract
 
     /**
      * @param string $fieldName
-     * @return array
+     * @return array<string>
      */
     public static function getRules(string $fieldName): array;
 }

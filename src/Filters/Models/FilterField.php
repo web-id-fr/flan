@@ -4,6 +4,10 @@ namespace WebId\Flan\Filters\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $name
+ * @property string $content
+ */
 class FilterField extends Model
 {
     /** @var array<string> */

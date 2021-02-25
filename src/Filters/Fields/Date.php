@@ -16,7 +16,7 @@ class Date extends Field implements FieldContract
     const _STRATEGY_CURRENT_MONTH = 'current_month';
     const _STRATEGY_PAST_MONTH = 'past_month';
 
-    /** @var array */
+    /** @var array<string> */
     const STRATEGIES = [
         self::_STRATEGY_EQUALS,
         self::_STRATEGY_BETWEEN,
@@ -40,7 +40,7 @@ class Date extends Field implements FieldContract
     }
 
     /**
-     * @param array $search
+     * @param array<string> $search
      * @param string $columnName
      * @return Builder
      */

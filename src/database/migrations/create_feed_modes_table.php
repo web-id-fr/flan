@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateFeedModesTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('feed_modes', function (Blueprint $table) {
             $table->bigIncrements('id');

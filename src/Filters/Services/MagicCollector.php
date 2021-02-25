@@ -8,7 +8,7 @@ use Illuminate\Support\Str;
 class MagicCollector
 {
     /**
-     * @return array
+     * @return array<string>
      */
     public static function getClasses(): array
     {

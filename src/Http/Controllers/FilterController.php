@@ -2,12 +2,11 @@
 
 namespace WebId\Flan\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Illuminate\Database\Eloquent\Collection;
+use Maatwebsite\Excel\Excel;
 use WebId\Flan\Filters\Base\FilterExport;
 use WebId\Flan\Filters\Requests\FilterRequest;
 use Carbon\Carbon;
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class FilterController extends Controller
@@ -15,12 +14,14 @@ class FilterController extends Controller
     /**
      * @param FilterRequest $request
      * @return BinaryFileResponse
+     * @throws \PhpOffice\PhpSpreadsheet\Exception
+     * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
     public function export(FilterRequest $request)
     {
         $filter = $request->getFilter();
 
-        /** @var Collection $customers */
+        /** @var Collection $models */
         $models = $filter->apply($request->validated());
         $headers = $filter->getColumnsNames();
 
@@ -29,8 +30,9 @@ class FilterController extends Controller
         }
 
         $fileName = $this->getFilterName($request) . '_' . Carbon::now()->format('Y-m-d');
+        $excelService = app(Excel::class);
 
-        return Excel::download(new FilterExport($models, $headers), $fileName .'.xlsx');
+        return $excelService->download(new FilterExport($models, $headers), $fileName .'.xlsx');
     }
 
     /**

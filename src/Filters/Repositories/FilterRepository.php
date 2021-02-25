@@ -3,16 +3,11 @@
 namespace WebId\Flan\Filters\Repositories;
 
 use WebId\Flan\Filters\Models\Filter;
-use App\Repositories\Traits\DeleteRepositoryTrait;
-use App\Repositories\Traits\SelectRepositoryTrait;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\DB;
 
 class FilterRepository
 {
-    use SelectRepositoryTrait;
-    use DeleteRepositoryTrait;
-
     /** @var Filter */
     protected $model;
 
@@ -25,10 +20,18 @@ class FilterRepository
     }
 
     /**
-     * @param string $filter_name
-     * @return Collection|array
+     * @return Collection
      */
-    public function getByFilterName(string $filter_name)
+    public function all(): Collection
+    {
+        return $this->model->all();
+    }
+
+    /**
+     * @param string $filter_name
+     * @return Collection<Filter>
+     */
+    public function getByFilterName(string $filter_name): Collection
     {
         if (empty($filter_name)) {
             return $this->all();
@@ -62,5 +65,15 @@ class FilterRepository
         DB::commit();
 
         return $filter;
+    }
+
+    /**
+     * @param Filter $filter
+     * @return bool|null
+     * @throws \Exception
+     */
+    public function delete(Filter $filter)
+    {
+        return $filter->delete();
     }
 }

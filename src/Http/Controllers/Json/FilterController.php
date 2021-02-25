@@ -6,10 +6,10 @@ use WebId\Flan\Filters\Models\Filter;
 use WebId\Flan\Filters\Repositories\FilterRepository;
 use WebId\Flan\Filters\Requests\CreateFilterRequest;
 use WebId\Flan\Filters\Resources\SavedFilterResource;
-use App\Http\Controllers\Controller;
 use WebId\Flan\Filters\Requests\FilterRequest;
 use WebId\Flan\Filters\Resources\FilterResource;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use WebId\Flan\Http\Controllers\Controller;
 
 class FilterController extends Controller
 {
@@ -23,7 +23,7 @@ class FilterController extends Controller
 
     /**
      * @param string $filter_name
-     * @return AnonymousResourceCollection
+     * @return AnonymousResourceCollection<array<mixed>>
      */
     public function index(string $filter_name)
     {
@@ -33,7 +33,7 @@ class FilterController extends Controller
 
     /**
      * @param FilterRequest $request
-     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
+     * @return AnonymousResourceCollection<array<mixed>>
      */
     public function filter(FilterRequest $request)
     {

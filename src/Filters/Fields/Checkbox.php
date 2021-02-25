@@ -9,7 +9,7 @@ use Illuminate\Database\Query\Builder;
 class Checkbox extends Field implements FieldContract
 {
     /**
-     * @param array $search
+     * @param array<string> $search
      * @param string $columnName
      * @return Builder
      */

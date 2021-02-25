@@ -15,7 +15,7 @@ class Number extends Field implements FieldContract
     const _STRATEGY_NOT_IN = 'not_in';
     const _STRATEGY_IS_NULL = 'is_null';
 
-    /** @var array */
+    /** @var array<string> */
     const STRATEGIES = [
         self::_STRATEGY_MATCH,
         self::_STRATEGY_BETWEEN,
@@ -25,7 +25,7 @@ class Number extends Field implements FieldContract
         self::_STRATEGY_IS_NULL,
     ];
 
-    /** @var array */
+    /** @var array<string> */
     const STRATEGIES_TO_OPERATOR = [
         self::_STRATEGY_MATCH   => '=',
         self::_STRATEGY_BIGGER  => '>=',
@@ -37,7 +37,7 @@ class Number extends Field implements FieldContract
     ];
 
     /**
-     * @param array $search
+     * @param array<string, mixed> $search
      * @param string $columnName
      * @return Builder
      */
