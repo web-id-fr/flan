@@ -1,0 +1,25 @@
+<?php
+
+namespace DummyNamespace;
+
+use WebId\Flan\Filters\Base\Filter;
+use DummyModel;
+
+class DummyModelNameFilter extends Filter
+{
+    /**
+     * @param DummyModelName $model
+     */
+    public function __construct(DummyModelName $model)
+    {
+        parent::__construct($model);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    public function getConfiguration(): array
+    {
+        return config('filters.dummyConfigName');
+    }
+}
