@@ -8,6 +8,7 @@
   <testsuites>
     <testsuite name="Package">
       <directory suffix=".php">./tests/Unit</directory>
+      <directory suffix=".php">./tests/Feature</directory>
     </testsuite>
   </testsuites>
 </phpunit>

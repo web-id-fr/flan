@@ -20,4 +20,18 @@ return [
     'default_date_format_input' => 'Y-m-d H:i:s',
     'default_sql_date_format_output' => '%Y-%m-%d',
     'default_sql_datetime_format_output' => '%Y-%m-%d at %Hh%i',
+    'routing' => [
+        'filters' => [
+            'active' => true,
+            'middlewares' => [],
+            'prefix' => 'filters',
+            'name' => 'filters.'
+        ],
+        'export' => [
+            'active' => true,
+            'middlewares' => [],
+            'prefix' => 'filters',
+            'name' => 'filters.'
+        ]
+    ]
 ];

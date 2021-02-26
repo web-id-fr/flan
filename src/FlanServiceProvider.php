@@ -63,5 +63,7 @@ class FlanServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/flan.php' => config_path('flan.php'),
         ], 'flan.config');
+
+        $this->loadRoutesFrom(__DIR__.'/Routes/json.php');
     }
 }
