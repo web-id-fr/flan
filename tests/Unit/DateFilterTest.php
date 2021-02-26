@@ -34,8 +34,8 @@ class DateFilterTest extends TestCase
         $results = $this->getPizzaFilter(['created_at'], [
             'created_at' => [
                 'strategy' => 'equals',
-                'date' => '2020-01-01'
-            ]
+                'date' => '2020-01-01',
+            ],
         ]);
 
         $this->assertCount(1, $results);
@@ -49,8 +49,8 @@ class DateFilterTest extends TestCase
             'created_at' => [
                 'strategy' => 'between',
                 'date' => '2020-01-03',
-                'second_date' => '2020-01-04'
-            ]
+                'second_date' => '2020-01-04',
+            ],
         ]);
 
         $this->assertCount(2, $results);
@@ -66,7 +66,7 @@ class DateFilterTest extends TestCase
             'created_at' => [
                 'strategy' => 'equals',
                 'date' => '2020-01-03',
-            ]
+            ],
         ]);
 
         $this->assertCount(1, $results);

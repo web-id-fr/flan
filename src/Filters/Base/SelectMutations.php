@@ -110,7 +110,7 @@ trait SelectMutations
     }
 
     /**
-     * @param array $field
+     * @param array<string, mixed> $field
      * @return Expression
      */
     private function mutateToSubSelect(array $field): Expression

@@ -42,7 +42,6 @@ class MakeFilterConfig extends GeneratorCommand
         return $this->replaceNamespace($stub, $name)
             ->replaceConfigName($stub, $name)
             ->replaceClass($stub, $name);
-
     }
 
     /**

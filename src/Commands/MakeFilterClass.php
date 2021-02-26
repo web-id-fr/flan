@@ -44,7 +44,6 @@ class MakeFilterClass extends GeneratorCommand
             ->replaceModel($stub, $name)
             ->replaceConfigName($stub, $name)
             ->replaceClass($stub, $name);
-
     }
 
     /**
@@ -118,6 +117,7 @@ class MakeFilterClass extends GeneratorCommand
         $className = explode('\\', $name);
         $className[count($className) - 1] = ucfirst($className[count($className) - 1]);
         $name = implode('\\', $className);
+
         return app_path(str_replace('\\', '/', $name).'Filter.php');
     }
 

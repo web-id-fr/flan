@@ -33,36 +33,36 @@ class IngredientTableSeeder extends Seeder
             ],
             [
                 'id' => 5,
-                'name' => 'Mozzarella'
+                'name' => 'Mozzarella',
             ],
             [
                 'id' => 6,
-                'name' => 'Basil'
+                'name' => 'Basil',
             ],
             [
                 'id' => 7,
-                'name' => 'Mushroom'
+                'name' => 'Mushroom',
             ],
             [
                 'id' => 8,
-                'name' => 'Ham'
+                'name' => 'Ham',
             ],
             [
                 'id' => 9,
-                'name' => 'Anchovy'
+                'name' => 'Anchovy',
             ],
             [
                 'id' => 10,
-                'name' => 'Piment'
+                'name' => 'Piment',
             ],
             [
                 'id' => 11,
-                'name' => 'Parmesan'
+                'name' => 'Parmesan',
             ],
             [
                 'id' => 12,
-                'name' => 'Neapolitan sausage'
-            ]
+                'name' => 'Neapolitan sausage',
+            ],
         ]);
     }
 }

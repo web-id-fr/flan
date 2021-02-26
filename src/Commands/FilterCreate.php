@@ -3,7 +3,6 @@
 namespace WebId\Flan\Commands;
 
 use Illuminate\Console\Command;
-use WebId\Flan\Filters\Services\MagicCollector;
 
 class FilterCreate extends Command
 {
@@ -38,11 +37,11 @@ class FilterCreate extends Command
         $name = $this->argument('name');
 
         $this->call('make:filter:class', [
-            'name' => $name
+            'name' => $name,
         ]);
 
         $this->call('make:filter:config', [
-            'name' => $name
+            'name' => $name,
         ]);
     }
 }

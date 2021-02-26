@@ -8,17 +8,17 @@ use Illuminate\Support\Str;
 class MagicCollector
 {
     /**
-     * @return array
+     * @return array<string>
      */
     public static function getClasses(): array
     {
-        if (!File::exists(app_path(config('flan.filter_class_directory')))) {
+        if (! File::exists(app_path(config('flan.filter_class_directory')))) {
             return [];
         }
 
         $classes = [];
         $filesInFolder = File::files(app_path(config('flan.filter_class_directory')));
-        foreach($filesInFolder as $path) {
+        foreach ($filesInFolder as $path) {
             $file = pathinfo($path);
             $fileName = $file['filename'];
             if (str_ends_with($fileName, 'Filter')) {
