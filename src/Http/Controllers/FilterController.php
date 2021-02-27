@@ -52,7 +52,7 @@ class FilterController extends Controller
     {
         $this->filterRepository->delete($filter);
 
-        return response()->json([], config('httpstatus.deleted'));
+        return response()->json([], 204);
     }
 
     /**

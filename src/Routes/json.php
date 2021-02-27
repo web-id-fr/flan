@@ -20,6 +20,6 @@ if (config('flan.routing.export.active')) {
         ->prefix(config('flan.routing.export.prefix'))
         ->name(config('flan.routing.export.name'))
         ->group(function () {
-            Route::post('/csv-export', [\WebId\Flan\Http\Controllers\ExportController::class])->name('export');
+            Route::post('/csv-export', [\WebId\Flan\Http\Controllers\ExportController::class, 'export'])->name('export');
         });
 }

@@ -7,8 +7,8 @@ use WebId\Flan\Filters\Fields\Select;
 use WebId\Flan\Filters\Fields\Text;
 
 return [
-    'filter_class_directory' => 'FilterClasses',
-    'filter_config_directory' => 'FilterConfigs',
+    'filter_class_directory' => 'FilterClasses', //todo: chemin long
+    'filter_config_directory' => 'FilterConfigs', //todo: chemin long
     'field_classes' => [
         'text'          => Text::class,
         'number'        => Number::class,
@@ -23,7 +23,12 @@ return [
     'routing' => [
         'filters' => [
             'active' => true,
-            'middlewares' => [],
+            'middlewares' => [
+                \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+                \Illuminate\Session\Middleware\StartSession::class,
+                \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+                \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            ],
             'prefix' => 'filters',
             'name' => 'filters.'
         ],

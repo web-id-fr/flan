@@ -12,12 +12,17 @@ class MagicCollector
      */
     public static function getClasses(): array
     {
-        if (! File::exists(app_path(config('flan.filter_class_directory')))) {
+        $filterClassDirectory = app_path(config('flan.filter_class_directory'));
+        if (data_get($_ENV, 'DB_TEST_MODE', false) == true) {
+            $filterClassDirectory = __DIR__ . '/../';
+        }
+
+        if (! File::exists($filterClassDirectory)) {
             return [];
         }
 
         $classes = [];
-        $filesInFolder = File::files(app_path(config('flan.filter_class_directory')));
+        $filesInFolder = File::files($filterClassDirectory);
         foreach ($filesInFolder as $path) {
             $file = pathinfo($path);
             $fileName = $file['filename'];

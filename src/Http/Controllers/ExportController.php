@@ -4,7 +4,8 @@ namespace WebId\Flan\Http\Controllers;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
-use Maatwebsite\Excel\Excel;
+use Illuminate\Support\Str;
+use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use WebId\Flan\Filters\Base\FilterExport;
 use WebId\Flan\Filters\Requests\FilterRequest;
@@ -17,7 +18,7 @@ class ExportController extends Controller
      * @throws \PhpOffice\PhpSpreadsheet\Exception
      * @throws \PhpOffice\PhpSpreadsheet\Writer\Exception
      */
-    public function __invoke(FilterRequest $request)
+    public function export(FilterRequest $request)
     {
         $filter = $request->getFilter();
 
@@ -30,9 +31,8 @@ class ExportController extends Controller
         }
 
         $fileName = $this->getFilterName($request) . '_' . Carbon::now()->format('Y-m-d');
-        $excelService = app(Excel::class);
 
-        return $excelService->download(new FilterExport($models, $headers), $fileName .'.xlsx');
+        return Excel::download(new FilterExport($models, $headers), $fileName .'.xlsx');
     }
 
     /**
@@ -42,7 +42,7 @@ class ExportController extends Controller
     private function getFilterName(FilterRequest $request): string
     {
         /** @var string $name */
-        $name = config('filters.names.' . $request->input('filter_name'));
+        $name = Str::ucfirst($request->input('filter_name'));
 
         return str_replace(' ', '_', $name);
     }

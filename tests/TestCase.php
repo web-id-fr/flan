@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as Orchestra;
 use WebId\Flan\Database\Seeders\FeedModeTableSeeder;
+use WebId\Flan\Database\Seeders\FilterFieldTableSeeder;
+use WebId\Flan\Database\Seeders\FilterTableSeeder;
 use WebId\Flan\Database\Seeders\IngredientPizzaTableSeeder;
 use WebId\Flan\Database\Seeders\IngredientTableSeeder;
 use WebId\Flan\Database\Seeders\PizzaTableSeeder;
@@ -60,16 +62,22 @@ class TestCase extends Orchestra
         include_once __DIR__.'/../src/Database/migrations/create_feed_modes_table.php';
         include_once __DIR__.'/../src/Database/migrations/create_pizzas_table.php';
         include_once __DIR__.'/../src/Database/migrations/create_ingredient_pizza_table.php';
+        include_once __DIR__.'/../src/Database/migrations/create_filters_table.php';
+        include_once __DIR__.'/../src/Database/migrations/create_filter_fields_table.php';
 
         (new \CreateIngredientsTable())->up();
         (new \CreateFeedModesTable())->up();
         (new \CreatePizzasTable())->up();
         (new \CreateIngredientPizzaTable())->up();
+        (new \CreateFiltersTable())->up();
+        (new \CreateFilterFieldsTable())->up();
 
         (new IngredientTableSeeder())->run();
         (new FeedModeTableSeeder())->run();
         (new PizzaTableSeeder())->run();
         (new IngredientPizzaTableSeeder())->run();
+        (new FilterTableSeeder())->run();
+        (new FilterFieldTableSeeder())->run();
     }
 
     /**
