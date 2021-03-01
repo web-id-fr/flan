@@ -7,8 +7,10 @@ use WebId\Flan\Filters\Fields\Select;
 use WebId\Flan\Filters\Fields\Text;
 
 return [
-    'filter_class_directory' => 'FilterClasses', //todo: chemin long
-    'filter_config_directory' => 'FilterConfigs', //todo: chemin long
+    'filter_class_directory' => app_path('FilterClasses'),
+    'filter_config_directory' => config_path('FilterConfigs'),
+    'default_model_namespace' => 'App\\Models',
+    'default_filter_class_namespace' => 'App\\FilterClasses',
     'field_classes' => [
         'text'          => Text::class,
         'number'        => Number::class,
@@ -38,5 +40,5 @@ return [
             'prefix' => 'filters',
             'name' => 'filters.'
         ]
-    ]
+    ],
 ];

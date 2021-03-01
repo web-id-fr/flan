@@ -72,7 +72,7 @@ class MakeFilterConfig extends GeneratorCommand
         $className = explode('\\', $name);
         $className = Str::lower(Str::plural($className[count($className) - 1]));
 
-        return config_path(config('flan.filter_config_directory')  . '/' . $className . '.php');
+        return config('flan.filter_config_directory')  . '/' . $className . '.php';
     }
 
     /**

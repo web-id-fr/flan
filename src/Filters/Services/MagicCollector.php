@@ -12,7 +12,7 @@ class MagicCollector
      */
     public static function getClasses(): array
     {
-        $filterClassDirectory = app_path(config('flan.filter_class_directory'));
+        $filterClassDirectory = config('flan.filter_class_directory');
         if (data_get($_ENV, 'DB_TEST_MODE', false) == true) {
             $filterClassDirectory = __DIR__ . '/../';
         }

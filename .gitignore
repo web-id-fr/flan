@@ -12,3 +12,5 @@ phpunit.xml
 psalm.xml
 
 .env
+
+IngredientFilter.php

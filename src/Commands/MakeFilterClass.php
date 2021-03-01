@@ -8,29 +8,21 @@ use Illuminate\Support\Str;
 class MakeFilterClass extends GeneratorCommand
 {
     /**
-     * The name and signature of the console command.
-     *
      * @var string
      */
     protected $signature = 'make:filter:class {name : The name of the model}';
 
     /**
-     * The name and signature of the console command.
-     *
      * @var string
      */
     protected $name = 'make:filter:class';
 
     /**
-     * The console command description.
-     *
      * @var string
      */
     protected $description = 'Create an filter class';
 
     /**
-     * Build the class with the given name.
-     *
      * @param  string  $name
      * @return string
      * @throws \Illuminate\Contracts\Filesystem\FileNotFoundException
@@ -47,8 +39,6 @@ class MakeFilterClass extends GeneratorCommand
     }
 
     /**
-     * Replace the model key-word on stub.
-     *
      * @param  string  $stub
      * @param  string  $name
      * @return $this
@@ -57,14 +47,12 @@ class MakeFilterClass extends GeneratorCommand
     {
         $className = explode('\\', $name);
         $className = $className[count($className) - 1];
-        $stub = str_replace('DummyModel', 'App\\Models\\' . ucfirst($className), $stub);
+        $stub = str_replace('DummyModel', config('flan.default_model_namespace') . '\\' . ucfirst($className), $stub);
 
         return $this;
     }
 
     /**
-     * Replace the model key-word on stub.
-     *
      * @param  string  $stub
      * @param  string  $name
      * @return $this
@@ -79,8 +67,6 @@ class MakeFilterClass extends GeneratorCommand
     }
 
     /**
-     * Replace the model key-word on stub.
-     *
      * @param  string  $stub
      * @param  string  $name
      * @return $this
@@ -95,30 +81,15 @@ class MakeFilterClass extends GeneratorCommand
     }
 
     /**
-     * Get the default namespace for the class.
-     *
-     * @param  string  $rootNamespace
-     * @return string
-     */
-    protected function getDefaultNamespace($rootNamespace)
-    {
-        return $rootNamespace . '\\' . config('flan.filter_class_directory');
-    }
-
-    /**
-     * Get the destination class path.
-     *
      * @param  string  $name
      * @return string
      */
     protected function getPath($name)
     {
-        $name = Str::replaceFirst($this->rootNamespace(), '', $name);
         $className = explode('\\', $name);
-        $className[count($className) - 1] = ucfirst($className[count($className) - 1]);
-        $name = implode('\\', $className);
+        $className = ucfirst($className[count($className) - 1]);
 
-        return app_path(str_replace('\\', '/', $name).'Filter.php');
+        return config('flan.filter_class_directory') . '/' . $className .'Filter.php';
     }
 
     /**
@@ -127,5 +98,14 @@ class MakeFilterClass extends GeneratorCommand
     protected function getStub()
     {
         return __DIR__ . '/../stubs/filter-class-model.stub';
+    }
+
+    /**
+     * @param  string  $name
+     * @return string
+     */
+    protected function qualifyClass($name)
+    {
+        return config('flan.default_filter_class_namespace') . '\\' . $name;
     }
 }
