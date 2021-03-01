@@ -74,21 +74,19 @@ class DateFilterTest extends TestCase
     }
 
     /** @test */
-//    public function it_use_config_sql_datetime_format_output(): void
-//    {
-//        config()->set('flan.default_sql_datetime_format_output', '%d/%m/%Y à %Hh%i');
-//        $results = $this->getPizzaFilter(['created_at_with_time'], [
-//            'created_at' => [
-//                'strategy' => 'equals',
-//                'date' => '2020-01-03',
-//            ]
-//        ]);
-//
-//        $this->assertCount(1, $results);
-//        $this->assertEquals('03/01/2020 à 00h00', $results[0]->created_at);
-//    }
+    public function it_use_config_sql_datetime_format_output(): void
+    {
+        config()->set('flan.default_sql_datetime_format_output', '%d/%m/%Y à %Hh%i');
+        $results = $this->getPizzaFilter(['created_at_with_time'], [
+            'created_at_with_time' => [
+                'strategy' => 'equals',
+                'date' => '2020-01-03',
+            ]
+        ]);
 
-
+        $this->assertCount(1, $results);
+        $this->assertEquals('03/01/2020 à 00h00', $results[0]->created_at_with_time);
+    }
 
     /** @test */
     public function it_can_sort_by_descending_when_other_config_sql_datetime_format_output(): void
