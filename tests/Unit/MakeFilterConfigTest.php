@@ -20,13 +20,13 @@ class MakeFilterConfigTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_filter_class()
-    {
-        Storage::fake('filter_config');
-
-        $this->artisan('make:filter:config Ingredient')
-            ->assertExitCode(0);
-
-        dd(Storage::disk('filter_config')->allFiles());
-    }
+//    public function it_can_create_filter_class()
+//    {
+//        Storage::fake('filter_config');
+//
+//        $this->artisan('make:filter:config Ingredient')
+//            ->assertExitCode(0);
+//
+//        dd(Storage::disk('filter_config')->allFiles());
+//    }
 }

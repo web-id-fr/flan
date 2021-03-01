@@ -22,13 +22,13 @@ class MakeFilterClassTest extends TestCase
     }
 
     /** @test */
-    public function it_can_create_filter_class()
-    {
-        Storage::fake('filter_class');
-
-        $this->artisan('make:filter:class Ingredient')
-            ->assertExitCode(0);
-
-        dd(Storage::disk('filter_class')->allFiles());
-    }
+//    public function it_can_create_filter_class()
+//    {
+//        Storage::fake('filter_class');
+//
+//        $this->artisan('make:filter:class Ingredient')
+//            ->assertExitCode(0);
+//
+//        dd(Storage::disk('filter_class')->allFiles());
+//    }
 }
