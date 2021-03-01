@@ -6,5 +6,4 @@ use WebId\Flan\Tests\TestCase;
 
 class FilterCreateTest extends TestCase
 {
-
 }
