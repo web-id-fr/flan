@@ -15,7 +15,7 @@ class MakeFilterConfigTest extends TestCase
             'filter_config' => [
                 'driver' => 'local',
                 'root' => __DIR__ . '/../../config/FilterConfigs',
-            ]
+            ],
         ]);
     }
 

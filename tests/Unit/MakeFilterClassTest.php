@@ -14,7 +14,7 @@ class MakeFilterClassTest extends TestCase
         config()->set('flan.default_model_namespace', 'WebId\\Flan\\Models');
         config()->set('flan.default_filter_class_namespace', 'WebId\\Flan\\Filters');
         config()->set('filesystems.disks', [
-            'filter_class' =>  [
+            'filter_class' => [
                 'driver' => 'local',
                 'root' => __DIR__ . '/../../src/Filters',
             ],
