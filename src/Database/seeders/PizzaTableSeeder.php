@@ -42,7 +42,7 @@ class PizzaTableSeeder extends Seeder
                 'price' => null,
                 'feed_mode_id' => 1,
                 'active' => 0,
-                'created_at' => '2020-01-04 00:00:00',
+                'created_at' => '2020-02-01 00:00:00',
             ],
         ]);
     }

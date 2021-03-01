@@ -135,7 +135,17 @@ abstract class Filter
      */
     public function orderBy(string $column = null)
     {
-        $this->orderBy = $column ?: $this->model->getTable() .'.'. $this->model->getKeyName();
+        if (!$column) {
+            $this->orderBy = $this->model->getTable() .'.'. $this->model->getKeyName();
+            return $this;
+        }
+
+        $this->orderBy = $column;
+
+        $field = $this->getFieldByName($column);
+        if (in_array($this->getFieldType($field), ['date', 'datetime'])) {
+            $this->orderBy = $this->getFieldColumnName($field);
+        }
 
         return $this;
     }
