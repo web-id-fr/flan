@@ -2,14 +2,14 @@
 
 namespace WebId\Flan\Filters\Fields;
 
+use Illuminate\Database\Query\Builder;
 use WebId\Flan\Filters\Base\Field;
 use WebId\Flan\Filters\Base\FieldContract;
-use Illuminate\Database\Query\Builder;
 
 class Select extends Field implements FieldContract
 {
     /**
-     * @param array $search
+     * @param array<string> $search
      * @param string $columnName
      * @return Builder
      */
@@ -20,7 +20,7 @@ class Select extends Field implements FieldContract
 
     /**
      * @param string $fieldName
-     * @return array
+     * @return array<string>
      */
     public static function getRules(string $fieldName): array
     {

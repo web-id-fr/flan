@@ -3,29 +3,26 @@
 namespace WebId\Flan\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use WebId\Flan\Models\Pizza;
+use WebId\Flan\Models\Ingredient;
 
-class PizzaFactory extends Factory
+class IngredientFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Pizza::class;
+    protected $model = Ingredient::class;
 
     /**
      * Define the model's default state.
      *
-     * @return array
+     * @return array<string, mixed>
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'name' => $this->faker->name,
-            'price' => $this->faker->randomFloat(2, 10, 20),
-            'active' => 0,
-            'created_at' => now()
         ];
     }
 }

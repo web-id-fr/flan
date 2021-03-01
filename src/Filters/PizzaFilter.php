@@ -17,7 +17,7 @@ class PizzaFilter extends Filter
 
         $this->setDefinition('ingredients', [
             'mutation' => [
-                'type' => 'concat'
+                'type' => 'concat',
             ],
             'table' => 'ingredients',
             'column_name' => 'name',
@@ -26,14 +26,14 @@ class PizzaFilter extends Filter
 
         $this->setDefinition('active', [
             'mutation' => [
-                'type' => 'array'
+                'type' => 'array',
             ],
-            'data' => Pizza::ACTIVE_LIST
+            'data' => Pizza::ACTIVE_LIST,
         ]);
 
         $this->setDefinition('created_at_with_time', [
             'column_name' => 'created_at',
-            'table' => 'pizzas'
+            'table' => 'pizzas',
         ]);
 
         $this->setDefinition('count_ingredients', [
@@ -41,7 +41,7 @@ class PizzaFilter extends Filter
                 return DB::table('ingredient_pizza')
                     ->selectRaw('COUNT(*)')
                     ->where('pizza_id', 'pizzas.id');
-            }
+            },
         ]);
     }
 
@@ -58,7 +58,7 @@ class PizzaFilter extends Filter
                     'name' => 'id',
                     'active' => true,
                     'field' => [
-                        'type' => 'number'
+                        'type' => 'number',
                     ],
                 ],
                 [
@@ -66,7 +66,7 @@ class PizzaFilter extends Filter
                     'name' => 'name',
                     'active' => true,
                     'field' => [
-                        'type' => 'text'
+                        'type' => 'text',
                     ],
                 ],
                 [
@@ -74,7 +74,7 @@ class PizzaFilter extends Filter
                     'name' => 'price',
                     'active' => true,
                     'field' => [
-                        'type' => 'number'
+                        'type' => 'number',
                     ],
                 ],
                 [
@@ -82,7 +82,7 @@ class PizzaFilter extends Filter
                     'name' => 'ingredients',
                     'active' => true,
                     'field' => [
-                        'type' => 'text'
+                        'type' => 'text',
                     ],
                 ],
                 [
@@ -90,7 +90,7 @@ class PizzaFilter extends Filter
                     'name' => 'active',
                     'active' => true,
                     'field' => [
-                        'type' => 'text'
+                        'type' => 'text',
                     ],
                 ],
                 [
@@ -98,7 +98,7 @@ class PizzaFilter extends Filter
                     'name' => 'created_at',
                     'active' => true,
                     'field' => [
-                        'type' => 'date'
+                        'type' => 'date',
                     ],
                 ],
                 [
@@ -106,7 +106,7 @@ class PizzaFilter extends Filter
                     'name' => 'created_at_with_time',
                     'active' => true,
                     'field' => [
-                        'type' => 'datetime'
+                        'type' => 'datetime',
                     ],
                 ],
                 [
@@ -114,10 +114,10 @@ class PizzaFilter extends Filter
                     'name' => 'count_ingredients',
                     'active' => true,
                     'field' => [
-                        'type' => 'number'
+                        'type' => 'number',
                     ],
-                ]
-            ]
+                ],
+            ],
         ];
     }
 

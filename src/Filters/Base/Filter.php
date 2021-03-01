@@ -70,7 +70,7 @@ abstract class Filter
             ->orderBy($inputs['sortBy'] ?? null)
             ->sort($inputs['descending'] ?? false);
 
-        if (!$this->haveColumn($this->getModelKeyName())) {
+        if (! $this->haveColumn($this->getModelKeyName())) {
             $this->query->select($this->model->getTable() .'.'. $this->getModelKeyName());
         }
 
@@ -135,7 +135,17 @@ abstract class Filter
      */
     public function orderBy(string $column = null)
     {
-        $this->orderBy = $column ?: $this->model->getTable() .'.'. $this->model->getKeyName();
+        if (!$column) {
+            $this->orderBy = $this->model->getTable() .'.'. $this->model->getKeyName();
+            return $this;
+        }
+
+        $this->orderBy = $column;
+
+        $field = $this->getFieldByName($column);
+        if (in_array($this->getFieldType($field), ['date', 'datetime'])) {
+            $this->orderBy = $this->getFieldColumnName($field);
+        }
 
         return $this;
     }
@@ -301,7 +311,7 @@ abstract class Filter
      */
     private function joinIfNeeded(array $field): void
     {
-        if (isset($field['join']) && !$this->isAlreadyJoined($field['join'])) {
+        if (isset($field['join']) && ! $this->isAlreadyJoined($field['join'])) {
             $this->{$field['join']}();
 
             $this->joins[] = $field['join'];

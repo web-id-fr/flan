@@ -22,7 +22,7 @@ class FlanServiceProvider extends ServiceProvider
             $this->commands([
                 MakeFilterClass::class,
                 MakeFilterConfig::class,
-                FilterCreate::class
+                FilterCreate::class,
             ]);
         }
     }
@@ -45,9 +45,9 @@ class FlanServiceProvider extends ServiceProvider
     /**
      * Get the services provided by the provider.
      *
-     * @return array
+     * @return array<string>
      */
-    public function provides()
+    public function provides(): array
     {
         return ['flan'];
     }
@@ -63,5 +63,7 @@ class FlanServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/flan.php' => config_path('flan.php'),
         ], 'flan.config');
+
+        $this->loadRoutesFrom(__DIR__.'/Routes/json.php');
     }
 }

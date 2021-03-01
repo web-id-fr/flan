@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePizzasTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('pizzas', function (Blueprint $table) {
             $table->bigIncrements('id');
