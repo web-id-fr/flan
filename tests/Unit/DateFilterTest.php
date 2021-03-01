@@ -81,7 +81,7 @@ class DateFilterTest extends TestCase
             'created_at_with_time' => [
                 'strategy' => 'equals',
                 'date' => '2020-01-03',
-            ]
+            ],
         ]);
 
         $this->assertCount(1, $results);
