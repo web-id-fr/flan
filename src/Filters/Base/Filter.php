@@ -135,8 +135,9 @@ abstract class Filter
      */
     public function orderBy(string $column = null)
     {
-        if (!$column) {
+        if (! $column) {
             $this->orderBy = $this->model->getTable() .'.'. $this->model->getKeyName();
+
             return $this;
         }
 
