@@ -22,7 +22,7 @@ class ExportControllerTest extends TestCase
             'rowsPerPage' => 10,
             'filter_name' => 'pizzas',
             'fields' => [
-                "name"
+                "name",
             ],
         ])
             ->assertSuccessful();

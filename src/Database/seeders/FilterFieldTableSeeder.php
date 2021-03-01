@@ -18,82 +18,82 @@ class FilterFieldTableSeeder extends Seeder
             [
                 'filter_id' => 1,
                 'name' => 'id',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 1,
                 'name' => 'name',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 1,
                 'name' => 'price',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 1,
                 'name' => 'ingredients',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 1,
                 'name' => 'active',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 1,
                 'name' => 'created_at',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 1,
                 'name' => 'created_at_with_time',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 1,
                 'name' => 'count_ingredients',
-                'content' => '{"strategy":"bigger","term":"4"}'
+                'content' => '{"strategy":"bigger","term":"4"}',
             ],
             [
                 'filter_id' => 2,
                 'name' => 'id',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 2,
                 'name' => 'name',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 2,
                 'name' => 'price',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 2,
                 'name' => 'ingredients',
-                'content' => '{"strategy":"ignore","term":"Mushroom"}'
+                'content' => '{"strategy":"ignore","term":"Mushroom"}',
             ],
             [
                 'filter_id' => 2,
                 'name' => 'active',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 2,
                 'name' => 'created_at',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 2,
                 'name' => 'created_at_with_time',
-                'content' => '[]'
+                'content' => '[]',
             ],
             [
                 'filter_id' => 2,
                 'name' => 'count_ingredients',
-                'content' => '[]'
+                'content' => '[]',
             ],
         ]);
     }

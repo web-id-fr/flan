@@ -41,7 +41,7 @@ class FilterControllerTest extends TestCase
             'label' => 'With Mozzarella',
             'fields' => [
                 'ingredients' => ['strategy' => 'contains', 'term' => 'Mozzarella'],
-            ]
+            ],
         ])
             ->assertSuccessful();
 
@@ -52,8 +52,8 @@ class FilterControllerTest extends TestCase
             "name" => "ingredients",
             "content" => [
                 "strategy" => "contains",
-                "term" => "Mozzarella"
-            ]
+                "term" => "Mozzarella",
+            ],
         ], $filter['fields'][0]);
     }
 
@@ -64,11 +64,11 @@ class FilterControllerTest extends TestCase
             ->assertStatus(204);
 
         $this->assertDatabaseMissing('filters', [
-            'id' => 1
+            'id' => 1,
         ]);
 
         $this->assertDatabaseMissing('filter_fields', [
-            'filter_id' => 1
+            'filter_id' => 1,
         ]);
     }
 
@@ -80,7 +80,7 @@ class FilterControllerTest extends TestCase
             'rowsPerPage' => 10,
             'filter_name' => 'pizzas',
             'fields' => [
-                "id", "name", "price", "ingredients", "active", "created_at", "created_at_with_time", "count_ingredients"
+                "id", "name", "price", "ingredients", "active", "created_at", "created_at_with_time", "count_ingredients",
             ],
         ])
             ->assertSuccessful();
@@ -97,7 +97,7 @@ class FilterControllerTest extends TestCase
             'rowsPerPage' => 2,
             'filter_name' => 'pizzas',
             'fields' => [
-                "id", "name", "price", "ingredients", "active", "created_at", "created_at_with_time", "count_ingredients"
+                "id", "name", "price", "ingredients", "active", "created_at", "created_at_with_time", "count_ingredients",
             ],
         ])
             ->assertSuccessful();
@@ -114,7 +114,7 @@ class FilterControllerTest extends TestCase
             'rowsPerPage' => 10,
             'filter_name' => 'pizzas',
             'fields' => [
-                "name"
+                "name",
             ],
             'sortBy' => 'name',
             'descending' => 1,
