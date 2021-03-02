@@ -16,11 +16,11 @@ class IsActive
      */
     public function handle($request, Closure $next)
     {
-        if ($this->isFiltersRoute($request) && !config('flan.routing.filters.active')) {
+        if ($this->isFiltersRoute($request) && ! config('flan.routing.filters.active')) {
             abort(404);
         }
 
-        if ($this->isExportRoute($request) && !config('flan.routing.export.active')) {
+        if ($this->isExportRoute($request) && ! config('flan.routing.export.active')) {
             abort(404);
         }
 
