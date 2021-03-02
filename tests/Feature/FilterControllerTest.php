@@ -128,4 +128,34 @@ class FilterControllerTest extends TestCase
         $this->assertEquals('Diavola', $data[2]['name']);
         $this->assertEquals('Capricciosa', $data[3]['name']);
     }
+
+    /** @test */
+    public function it_can_un_active_routes(): void
+    {
+        config()->set('flan.routing.filters.active', false);
+        $this->get(route(self::_ROUTE_INDEX, ['filter_name' => 'pizzas']))
+            ->assertNotFound();
+
+        $this->post(route(self::_ROUTE_STORE), [
+            'filter_name' => 'pizzas',
+            'label' => 'With Mozzarella',
+            'fields' => [
+                'ingredients' => ['strategy' => 'contains', 'term' => 'Mozzarella'],
+            ],
+        ])
+            ->assertNotFound();
+
+        $this->delete(route(self::_ROUTE_DESTROY, ['filter' => 1]))
+            ->assertNotFound();
+
+        $this->post(route(self::_ROUTE_FILTER), [
+            'page' => 1,
+            'rowsPerPage' => 10,
+            'filter_name' => 'pizzas',
+            'fields' => [
+                "id", "name", "price", "ingredients", "active", "created_at", "created_at_with_time", "count_ingredients",
+            ],
+        ])
+            ->assertNotFound();
+    }
 }

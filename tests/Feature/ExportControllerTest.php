@@ -14,7 +14,6 @@ class ExportControllerTest extends TestCase
     /** @test */
     public function it_can_export_pizzas()
     {
-        $this->withoutExceptionHandling();
         Excel::fake();
 
         $this->post(route(self::_ROUTE_EXPORT), [
@@ -36,5 +35,21 @@ class ExportControllerTest extends TestCase
                     && $export->collection()->contains('name', 'Napoletana');
             }
         );
+    }
+
+    /** @test */
+    public function it_can_un_active_route()
+    {
+        config()->set('flan.routing.export.active', false);
+
+        $this->post(route(self::_ROUTE_EXPORT), [
+            'page' => 1,
+            'rowsPerPage' => 10,
+            'filter_name' => 'pizzas',
+            'fields' => [
+                "name",
+            ],
+        ])
+            ->assertNotFound();
     }
 }

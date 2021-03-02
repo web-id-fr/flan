@@ -10,7 +10,6 @@ class MakeFilterConfigTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        config()->set('flan.filter_config_directory',  __DIR__ . '/../../config/FilterConfigs');
     }
 
     /** @test */

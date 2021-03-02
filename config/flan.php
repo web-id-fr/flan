@@ -26,6 +26,7 @@ return [
         'filters' => [
             'active' => true, //active or not filters routes
             'middlewares' => [
+                \WebId\Flan\Http\Middleware\IsActive::class,
                 \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
                 \Illuminate\Session\Middleware\StartSession::class,
                 \Illuminate\View\Middleware\ShareErrorsFromSession::class,
@@ -37,6 +38,7 @@ return [
         'export' => [
             'active' => true, //active or not export route
             'middlewares' => [
+                \WebId\Flan\Http\Middleware\IsActive::class,
                 \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
                 \Illuminate\Session\Middleware\StartSession::class,
                 \Illuminate\View\Middleware\ShareErrorsFromSession::class,
