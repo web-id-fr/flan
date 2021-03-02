@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use WebId\Flan\Tests\TestCase;
 
 class MakeFilterConfigTest extends TestCase
@@ -11,22 +11,16 @@ class MakeFilterConfigTest extends TestCase
     {
         parent::setUp();
         config()->set('flan.filter_config_directory',  __DIR__ . '/../../config/FilterConfigs');
-        config()->set('filesystems.disks', [
-            'filter_config' => [
-                'driver' => 'local',
-                'root' => __DIR__ . '/../../config/FilterConfigs',
-            ],
-        ]);
     }
 
     /** @test */
-//    public function it_can_create_filter_class()
-//    {
-//        Storage::fake('filter_config');
-//
-//        $this->artisan('make:filter:config Ingredient')
-//            ->assertExitCode(0);
-//
-//        dd(Storage::disk('filter_config')->allFiles());
-//    }
+    public function it_can_create_filter_class()
+    {
+        File::deleteDirectory(config('flan.filter_config_directory'));
+
+        $this->artisan('make:filter:config Ingredient')
+            ->assertExitCode(0);
+
+        $this->assertFileExists(config('flan.filter_config_directory') . '/ingredients.php');
+    }
 }
