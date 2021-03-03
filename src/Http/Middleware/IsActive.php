@@ -51,12 +51,12 @@ class IsActive
     protected function isExportRoute(Request $request): bool
     {
         $route = $request->route();
-        if ($route && $route->getName() === null) {
+        if (!$route || $route->getName() === null) {
             return false;
         }
 
         return str_starts_with(
-            $route,
+            $route->getName(),
             config('flan.routing.export.name')
         );
     }

@@ -8,8 +8,6 @@ vendor/
 build
 coverage
 docs
-phpunit.xml
-psalm.xml
 
 .env
 
