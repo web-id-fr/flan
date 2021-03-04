@@ -5,13 +5,13 @@
 Require this package with composer.
 
 ```shell
-composer require web-id-fr/flan
+composer require web-id/flan
 ```
 Laravel uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
 
 Copy the package config to your local config with the publish command:
 ```shell
-php artisan vendor:publish --provider="WebId\Radis\RadisProvider"
+php artisan vendor:publish --provider="WebId\Flan\FlanServiceProvider"
 ```
 
 ## Usage
