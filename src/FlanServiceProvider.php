@@ -16,6 +16,8 @@ class FlanServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadMigrationsFrom(__DIR__.'/database/migrations/filters');
+
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
             $this->bootForConsole();
@@ -63,7 +65,5 @@ class FlanServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__.'/../config/flan.php' => config_path('flan.php'),
         ], 'flan.config');
-
-        $this->loadRoutesFrom(__DIR__.'/Routes/json.php');
     }
 }

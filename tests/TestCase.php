@@ -62,8 +62,8 @@ class TestCase extends Orchestra
         include_once __DIR__.'/../src/Database/migrations/create_feed_modes_table.php';
         include_once __DIR__.'/../src/Database/migrations/create_pizzas_table.php';
         include_once __DIR__.'/../src/Database/migrations/create_ingredient_pizza_table.php';
-        include_once __DIR__.'/../src/Database/migrations/create_filters_table.php';
-        include_once __DIR__.'/../src/Database/migrations/create_filter_fields_table.php';
+        include_once __DIR__.'/../src/Database/migrations/filters/2021_03_04_170119_create_filters_table.php';
+        include_once __DIR__.'/../src/Database/migrations/filters/2021_03_04_170120_create_filter_fields_table.php';
 
         (new \CreateIngredientsTable())->up();
         (new \CreateFeedModesTable())->up();
