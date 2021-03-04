@@ -5,7 +5,7 @@
 Require this package with composer.
 
 ```shell
-composer require web-id-fr/flan
+composer require web-id/flan
 ```
 Laravel uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
 
