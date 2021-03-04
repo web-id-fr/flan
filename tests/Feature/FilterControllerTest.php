@@ -11,6 +11,12 @@ class FilterControllerTest extends TestCase
     const _ROUTE_STORE = 'filters.store';
     const _ROUTE_DESTROY = 'filters.destroy';
 
+    public function setUp(): void
+    {
+        parent::setUp();
+        config()->set('flan.default_filter_class_namespace', '\WebId\Flan\Filters');
+    }
+
     /** @test */
     public function it_can_get_filter(): void
     {

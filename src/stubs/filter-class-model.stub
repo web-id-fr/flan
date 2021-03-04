@@ -20,6 +20,6 @@ class DummyModelNameFilter extends Filter
      */
     public function getConfiguration(): array
     {
-        return config('filters.dummyConfigName');
+        return config('filterConfigs.dummyConfigName');
     }
 }

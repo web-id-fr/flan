@@ -29,7 +29,7 @@ class MagicCollector
             if (str_ends_with($fileName, 'Filter')) {
                 $configName = substr($fileName, 0, -6);
                 $configName = Str::lower(Str::plural($configName));
-                $classes[$configName] = '\WebId\Flan\Filters\\' . $fileName;
+                $classes[$configName] = config('flan.default_filter_class_namespace') . '\\' . $fileName;
             }
         }
 

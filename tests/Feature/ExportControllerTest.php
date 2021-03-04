@@ -14,6 +14,7 @@ class ExportControllerTest extends TestCase
     /** @test */
     public function it_can_export_pizzas()
     {
+        config()->set('flan.default_filter_class_namespace', '\WebId\Flan\Filters');
         Excel::fake();
 
         $this->post(route(self::_ROUTE_EXPORT), [
