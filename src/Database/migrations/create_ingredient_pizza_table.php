@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateIngredientPizzaTable extends Migration
 {
-    public function up()
+    public function up(): void
     {
         Schema::create('ingredient_pizza', function (Blueprint $table) {
             $table->unsignedBigInteger('pizza_id');

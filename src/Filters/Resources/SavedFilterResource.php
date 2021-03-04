@@ -2,8 +2,8 @@
 
 namespace WebId\Flan\Filters\Resources;
 
-use WebId\Flan\Filters\Models\Filter;
 use Illuminate\Http\Resources\Json\JsonResource;
+use WebId\Flan\Filters\Models\Filter;
 
 class SavedFilterResource extends JsonResource
 {

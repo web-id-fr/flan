@@ -1,57 +1,32 @@
-# Flan
-
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-[![Build Status][ico-travis]][link-travis]
-[![StyleCI][ico-styleci]][link-styleci]
-
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+# FLAN - Filter like a ninja 🥷
 
 ## Installation
 
-Via Composer
+Require this package with composer.
 
-``` bash
-$ composer require web-id/flan
+```shell
+composer require web-id-fr/flan
+```
+Laravel uses Package Auto-Discovery, so doesn't require you to manually add the ServiceProvider.
+
+Copy the package config to your local config with the publish command:
+```shell
+php artisan vendor:publish --provider="WebId\Radis\RadisProvider"
 ```
 
 ## Usage
 
-## Change log
-
-Please see the [changelog](changelog.md) for more information on what has changed recently.
-
-## Testing
-
-``` bash
-$ composer test
+You can create a filter with :
+```shell
+php artisan filter:create User
 ```
 
-## Contributing
+or eventually just the Filter class :
+```shell
+php artisan make:filter:class User
+```
 
-Please see [contributing.md](contributing.md) for details and a todolist.
-
-## Security
-
-If you discover any security related issues, please email author email instead of using the issue tracker.
-
-## Credits
-
-- [author name][link-author]
-- [All Contributors][link-contributors]
-
-## License
-
-license. Please see the [license file](license.md) for more information.
-
-[ico-version]: https://img.shields.io/packagist/v/ltiollier/flan.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/ltiollier/flan.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/ltiollier/flan/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
-
-[link-packagist]: https://packagist.org/packages/ltiollier/flan
-[link-downloads]: https://packagist.org/packages/ltiollier/flan
-[link-travis]: https://travis-ci.org/ltiollier/flan
-[link-styleci]: https://styleci.io/repos/12345678
-[link-author]: https://github.com/ltiollier
-[link-contributors]: ../../contributors
+or the juste  the Filter config :
+```shell
+php artisan make:filter:config User
+```

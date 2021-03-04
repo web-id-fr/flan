@@ -2,10 +2,10 @@
 
 namespace WebId\Flan\Filters\Requests;
 
+use Illuminate\Foundation\Http\FormRequest;
 use WebId\Flan\Filters\Base\FieldFactory;
 use WebId\Flan\Filters\Base\Filter;
 use WebId\Flan\Filters\Base\FilterFactory;
-use Illuminate\Foundation\Http\FormRequest;
 use WebId\Flan\Filters\Services\MagicCollector;
 
 class FilterRequest extends FormRequest

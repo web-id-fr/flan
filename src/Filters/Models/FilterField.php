@@ -4,6 +4,10 @@ namespace WebId\Flan\Filters\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property string $name
+ * @property string $content
+ */
 class FilterField extends Model
 {
     /** @var array<string> */
@@ -14,6 +18,6 @@ class FilterField extends Model
 
     /** @var array<string> */
     protected $casts = [
-        'content' => 'array'
+        'content' => 'array',
     ];
 }

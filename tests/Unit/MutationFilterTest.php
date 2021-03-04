@@ -19,7 +19,7 @@ class MutationFilterTest extends TestCase
     {
         $results = $this->getPizzaFilter(['active'], ['active' => [
             'strategy' => 'contains',
-            'term' => 0
+            'term' => 0,
         ]]);
 
         $this->assertCount(1, $results);

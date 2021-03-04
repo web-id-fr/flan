@@ -44,8 +44,8 @@ class NumberFilterTest extends TestCase
             'price' => [
                 'strategy' => 'between',
                 'term' => 10.30,
-                'second_term' => 12.30
-            ]
+                'second_term' => 12.30,
+            ],
         ]);
 
         $this->assertCount(1, $results);

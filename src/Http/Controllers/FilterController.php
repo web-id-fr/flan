@@ -2,46 +2,68 @@
 
 namespace WebId\Flan\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use WebId\Flan\Filters\Base\FilterExport;
+use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use WebId\Flan\Filters\Models\Filter;
+use WebId\Flan\Filters\Repositories\FilterRepository;
+use WebId\Flan\Filters\Requests\CreateFilterRequest;
 use WebId\Flan\Filters\Requests\FilterRequest;
-use Carbon\Carbon;
-use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Facades\Excel;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use WebId\Flan\Filters\Resources\FilterResource;
+use WebId\Flan\Filters\Resources\SavedFilterResource;
 
 class FilterController extends Controller
 {
-    /**
-     * @param FilterRequest $request
-     * @return BinaryFileResponse
-     */
-    public function export(FilterRequest $request)
+    /** @var FilterRepository */
+    protected $filterRepository;
+
+    public function __construct(FilterRepository $repository)
     {
-        $filter = $request->getFilter();
+        $this->filterRepository = $repository;
+    }
 
-        /** @var Collection $customers */
-        $models = $filter->apply($request->validated());
-        $headers = $filter->getColumnsNames();
+    /**
+     * @param string $filter_name
+     * @return AnonymousResourceCollection<array<mixed>>
+     */
+    public function index(string $filter_name)
+    {
+        $filters = $this->filterRepository->getByFilterName($filter_name);
 
-        if (!$filter->haveColumn($filter->getModelKeyName())) {
-            array_unshift($headers, $filter->getModelKeyName());
-        }
-
-        $fileName = $this->getFilterName($request) . '_' . Carbon::now()->format('Y-m-d');
-
-        return Excel::download(new FilterExport($models, $headers), $fileName .'.xlsx');
+        return SavedFilterResource::collection($filters);
     }
 
     /**
      * @param FilterRequest $request
-     * @return string
+     * @return AnonymousResourceCollection<array<mixed>>
      */
-    private function getFilterName(FilterRequest $request): string
+    public function filter(FilterRequest $request)
     {
-        /** @var string $name */
-        $name = config('filters.names.' . $request->input('filter_name'));
+        $models = $request->getFilter()->apply($request->all());
 
-        return str_replace(' ', '_', $name);
+        return FilterResource::collection($models);
+    }
+
+    /**
+     * @param Filter $filter
+     *
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
+     */
+    public function destroy(Filter $filter)
+    {
+        $this->filterRepository->delete($filter);
+
+        return response()->json([], 204);
+    }
+
+    /**
+     * @param CreateFilterRequest $request
+     * @return SavedFilterResource
+     */
+    public function store(CreateFilterRequest $request)
+    {
+        $newFilter = $this->filterRepository
+            ->create($request->except('fields'), $request->fields);
+
+        return SavedFilterResource::make($newFilter);
     }
 }
