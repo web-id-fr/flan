@@ -58,19 +58,17 @@ class TestCase extends Orchestra
 
         $this->dropTables();
 
-        include_once __DIR__.'/../src/Database/migrations/create_ingredients_table.php';
-        include_once __DIR__.'/../src/Database/migrations/create_feed_modes_table.php';
-        include_once __DIR__.'/../src/Database/migrations/create_pizzas_table.php';
-        include_once __DIR__.'/../src/Database/migrations/create_ingredient_pizza_table.php';
-        include_once __DIR__.'/../src/Database/migrations/create_filters_table.php';
-        include_once __DIR__.'/../src/Database/migrations/create_filter_fields_table.php';
+        include_once __DIR__ . '/../src/Database/migrations/testing/create_ingredients_table.php';
+        include_once __DIR__ . '/../src/Database/migrations/testing/create_feed_modes_table.php';
+        include_once __DIR__ . '/../src/Database/migrations/testing/create_pizzas_table.php';
+        include_once __DIR__ . '/../src/Database/migrations/testing/create_ingredient_pizza_table.php';
+        include_once __DIR__ . '/../src/Database/migrations/create_filters_tables.php';
 
         (new \CreateIngredientsTable())->up();
         (new \CreateFeedModesTable())->up();
         (new \CreatePizzasTable())->up();
         (new \CreateIngredientPizzaTable())->up();
-        (new \CreateFiltersTable())->up();
-        (new \CreateFilterFieldsTable())->up();
+        (new \CreateFiltersTables())->up();
 
         (new IngredientTableSeeder())->run();
         (new FeedModeTableSeeder())->run();
