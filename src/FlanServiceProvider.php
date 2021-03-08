@@ -67,8 +67,7 @@ class FlanServiceProvider extends ServiceProvider
         ], 'flan.config');
 
         $this->publishes([
-            __DIR__.'/Database/migrations/create_filters_table.php' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_filters_table.php'),
-            __DIR__.'/Database/migrations/create_filter_fields_table.php' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_filter_fields_table.php'),
+            __DIR__.'/Database/migrations/create_filters_tables.php' => database_path('migrations/'.date('Y_m_d_His', time()).'_create_filters_tables.php'),
         ], 'flan.migrations');
 
         $this->loadRoutesFrom(__DIR__.'/Routes/json.php');
