@@ -84,8 +84,8 @@ class Number extends Field implements FieldContract
             $fieldName .'.term' => [
                 'nullable',
                 'required_if:'. $fieldName . '.strategy,' . $strategyListRequiringTerm,
-                'integer_if:' . $fieldName .'.strategy,equals,between,bigger,lower,different',
-                'array_if:' . $fieldName .'.strategy,not_in',
+                'flan_integer_if:' . $fieldName .'.strategy,equals,between,bigger,lower,different',
+                'flan_array_if:' . $fieldName .'.strategy,not_in',
             ],
             $fieldName .'.term.*' => 'nullable|integer',
         ];

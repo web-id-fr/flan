@@ -38,7 +38,8 @@
         "laravel": {
             "providers": [
                 "WebId\\Flan\\FlanServiceProvider",
-                "WebId\\Flan\\RouteServiceProvider"
+                "WebId\\Flan\\RouteServiceProvider",
+                "WebId\\Flan\\ValidatorServiceProvider"
             ],
             "aliases": {
                 "Flan": "WebId\\Flan\\Facades\\Flan"
