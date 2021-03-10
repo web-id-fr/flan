@@ -34,6 +34,7 @@ class ValidatorServiceProvider extends ServiceProvider
             if (in_array($targetRuleValue, $parameters)) {
                 return ctype_digit($value);
             }
+
             return true;
         });
 
@@ -47,6 +48,7 @@ class ValidatorServiceProvider extends ServiceProvider
             if (in_array($targetRuleValue, $parameters)) {
                 return is_array($value);
             }
+
             return true;
         });
     }
