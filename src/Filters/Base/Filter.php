@@ -213,6 +213,8 @@ abstract class Filter
             $this->query->orderBy($this->orderBy, $this->sort);
         }
 
+        $this->addColumnsToGroupByIfUsed();
+
         return $this->query;
     }
 
@@ -371,5 +373,19 @@ abstract class Filter
         return '`'. config('database.db_prefix') .
             $this->getFieldTableName($field) .'`.`'.
             $this->getFieldColumnName($field) .'`';
+    }
+
+    private function addColumnsToGroupByIfUsed(): void
+    {
+        if (empty($this->query->groups)) {
+            return;
+        }
+
+        foreach ($this->columns as $column) {
+            $field = $this->getFieldByName($column);
+            if ($this->getFieldMutationType($field) !== 'concat') {
+                $this->query->groupBy($column);
+            }
+        }
     }
 }
