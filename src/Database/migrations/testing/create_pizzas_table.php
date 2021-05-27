@@ -13,6 +13,7 @@ class CreatePizzasTable extends Migration
             $table->string('name');
             $table->decimal('price')->nullable();
             $table->boolean('active')->default(0);
+            $table->integer('gss');
             $table->timestamps();
 
             $table->unsignedBigInteger('feed_mode_id');

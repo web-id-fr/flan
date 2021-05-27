@@ -2,7 +2,7 @@
 
 namespace WebId\Flan\Tests;
 
-use Dotenv\Dotenv;
+use Symfony\Component\Dotenv\Dotenv;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -36,8 +36,8 @@ class TestCase extends Orchestra
 
     protected function getEnvironmentSetUp($app)
     {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/../');
-        $dotenv->load();
+        $dotenv = new Dotenv();
+        $dotenv->overload(__DIR__ . '/../.env');
 
         config()->set('database.default', 'mysql');
         config()->set('database.connections.mysql', [

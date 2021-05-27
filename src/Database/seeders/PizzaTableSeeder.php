@@ -21,6 +21,7 @@ class PizzaTableSeeder extends Seeder
                 'price' => 12.45,
                 'feed_mode_id' => 2,
                 'active' => 1,
+                'gss' => 1,
                 'created_at' => '2020-01-02 00:00:00',
             ], [
                 'id' => 2,
@@ -28,6 +29,7 @@ class PizzaTableSeeder extends Seeder
                 'price' => 10.20,
                 'feed_mode_id' => 1,
                 'active' => 1,
+                'gss' => 2,
                 'created_at' => '2020-01-01 00:00:00',
             ], [
                 'id' => 3,
@@ -35,6 +37,7 @@ class PizzaTableSeeder extends Seeder
                 'price' => 11.50,
                 'feed_mode_id' => 1,
                 'active' => 1,
+                'gss' => 2,
                 'created_at' => '2020-01-03 00:00:00',
             ], [
                 'id' => 4,
@@ -42,6 +45,7 @@ class PizzaTableSeeder extends Seeder
                 'price' => null,
                 'feed_mode_id' => 1,
                 'active' => 0,
+                'gss' => 3,
                 'created_at' => '2020-02-01 00:00:00',
             ],
         ]);

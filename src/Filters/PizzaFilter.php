@@ -90,7 +90,17 @@ class PizzaFilter extends Filter
                     'name' => 'active',
                     'active' => true,
                     'field' => [
-                        'type' => 'text',
+                        'type' => 'select',
+                        'options' => [
+                            [
+                                'value' => '1',
+                                'text' => 'Activate',
+                            ],
+                            [
+                                'value' => '0',
+                                'text' => 'Unactivate',
+                            ],
+                        ]
                     ],
                 ],
                 [
@@ -117,6 +127,14 @@ class PizzaFilter extends Filter
                         'type' => 'number',
                     ],
                 ],
+                [
+                    'text' => 'Indice GSS',
+                    'name' => 'gss',
+                    'active' => true,
+                    'field' => [
+                        'type' => 'checkbox'
+                    ]
+                ]
             ],
         ];
     }
