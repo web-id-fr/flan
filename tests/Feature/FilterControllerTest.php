@@ -15,6 +15,7 @@ class FilterControllerTest extends TestCase
     {
         parent::setUp();
         config()->set('flan.default_filter_class_namespace', '\WebId\Flan\Filters');
+        config()->set('flan.filter_class_directory', __DIR__ . '/../../src/Filters');
     }
 
     /** @test */
@@ -81,6 +82,7 @@ class FilterControllerTest extends TestCase
     /** @test */
     public function it_can_post_basic_filter(): void
     {
+        $this->withoutExceptionHandling();
         $response = $this->post(route(self::_ROUTE_FILTER), [
             'page' => 1,
             'rowsPerPage' => 10,
