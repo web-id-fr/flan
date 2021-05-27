@@ -5,6 +5,7 @@ namespace WebId\Flan\Filters\Base;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -336,13 +337,17 @@ abstract class Filter
      * @param array<string, mixed> $inputs
      * @return array<string, mixed>
      */
-    private function getUsableFilters($inputs)
+    private function getUsableFilters(array $inputs): array
     {
         $names = array_column($this->definition, 'name');
+        $search = Arr::get($inputs, 'search', []);
 
-        return array_filter($inputs, function ($key) use ($names) {
+        /** @var array<string, mixed> $filters */
+        $filters = array_filter($search, function ($key) use ($names) {
             return in_array($key, $names);
         }, ARRAY_FILTER_USE_KEY);
+
+        return $filters;
     }
 
     private function queryNotSoftDeleted(): void

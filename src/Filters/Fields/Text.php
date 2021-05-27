@@ -38,9 +38,9 @@ class Text extends Field implements FieldContract
         $strategyList = implode(',', array_keys(self::STRATEGY_TO_OPERATOR));
 
         return [
-            $fieldName => 'array',
-            $fieldName .'.strategy' => 'required_with:'. $fieldName .'|in:'. $strategyList,
-            $fieldName .'.term' => 'required_with:'. $fieldName .'|string',
+            'search.' . $fieldName => 'array',
+            'search.' . $fieldName .'.strategy' => 'required_with:'. $fieldName .'|in:'. $strategyList,
+            'search.' . $fieldName .'.term' => 'required_with:'. $fieldName .'|string',
         ];
     }
 }
