@@ -122,7 +122,7 @@ class FilterControllerTest extends TestCase
             'rowsPerPage' => 10,
             'filter_name' => 'pizzas',
             'fields' => [
-                "name", "count_ingredients"
+                "name", "count_ingredients",
             ],
             'sortBy' => 'name',
             'descending' => 1,
@@ -151,8 +151,8 @@ class FilterControllerTest extends TestCase
                 'name' => [
                     'strategy' => 'contains',
                     'term' => 'ol',
-                ]
-            ]
+                ],
+            ],
         ])
             ->assertSuccessful();
 
