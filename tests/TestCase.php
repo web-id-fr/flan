@@ -15,6 +15,7 @@ use WebId\Flan\Database\Seeders\IngredientTableSeeder;
 use WebId\Flan\Database\Seeders\PizzaTableSeeder;
 use WebId\Flan\Filters\PizzaFilter;
 use WebId\Flan\FlanServiceProvider;
+use WebId\Flan\ValidatorServiceProvider;
 
 class TestCase extends Orchestra
 {
@@ -31,6 +32,7 @@ class TestCase extends Orchestra
     {
         return [
             FlanServiceProvider::class,
+            ValidatorServiceProvider::class
         ];
     }
 

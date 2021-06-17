@@ -37,6 +37,8 @@ class FilterRequest extends FormRequest
             'fields.*' => 'in:' . $availableColumns,
             'sortBy' => 'nullable|string|in:' . $availableColumns,
             'descending' => 'boolean',
+            'groupedOrClause' => 'nullable|array',
+            'groupedOrClause.*' => 'in:' . $availableColumns,
         ];
 
         foreach ($config as $field) {
