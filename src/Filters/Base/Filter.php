@@ -167,6 +167,7 @@ abstract class Filter
         }
 
         $this->groupedOrClause = $columns;
+
         return $this;
     }
 
@@ -264,6 +265,7 @@ abstract class Filter
             if (in_array($column, $this->groupedOrClause)) {
                 $groupedOrClauseFilters[$column] = $search;
                 unset($filters[$column]);
+
                 continue;
             }
 
@@ -273,30 +275,20 @@ abstract class Filter
             $fieldClass->query($search, $column);
         }
 
-        $this->query->where(function ($query) use ($groupedOrClauseFilters) {
-            foreach ($groupedOrClauseFilters as $column => $search) {
-                $query->orWhere(function ($query) use ($column, $search) {
-                    $field = $this->getFieldByName($column);
-                    $column = $this->getQueryableColumnNameForWhereStatement($field);
-                    $fieldClass = FieldFactory::create($this->getFieldType($field), $query);
-                    $fieldClass->query($search, $column);
-                });
-            }
-        });
+        if (!empty($groupedOrClauseFilters)) {
+            $this->query->where(function ($query) use ($groupedOrClauseFilters) {
+                foreach ($groupedOrClauseFilters as $column => $search) {
+                    $query->orWhere(function ($query) use ($column, $search) {
+                        $field = $this->getFieldByName($column);
+                        $column = $this->getQueryableColumnNameForWhereStatement($field);
+                        $fieldClass = FieldFactory::create($this->getFieldType($field), $query);
+                        $fieldClass->query($search, $column);
+                    });
+                }
+            });
+        }
 
         $this->queryNotSoftDeleted();
-    }
-
-    /**
-     * @param array<string, mixed> $search
-     * @param string $columnName
-     */
-    private function querySearch(array $search, string $columnName): void
-    {
-        $field = $this->getFieldByName($columnName);
-        $column = $this->getQueryableColumnNameForWhereStatement($field);
-        $fieldClass = FieldFactory::create($this->getFieldType($field), $this->query);
-        $fieldClass->query($search, $column);
     }
 
     /**

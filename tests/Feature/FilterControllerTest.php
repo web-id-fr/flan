@@ -180,7 +180,7 @@ class FilterControllerTest extends TestCase
                     'term' => 10.20,
                 ],
             ],
-            'groupedOrClause' => ['name', 'price']
+            'groupedOrClause' => ['name', 'price'],
         ])
             ->assertSuccessful();
 

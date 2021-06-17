@@ -32,7 +32,7 @@ class TestCase extends Orchestra
     {
         return [
             FlanServiceProvider::class,
-            ValidatorServiceProvider::class
+            ValidatorServiceProvider::class,
         ];
     }
 
