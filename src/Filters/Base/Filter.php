@@ -275,7 +275,7 @@ abstract class Filter
             $fieldClass->query($search, $column);
         }
 
-        if (!empty($groupedOrClauseFilters)) {
+        if (! empty($groupedOrClauseFilters)) {
             $this->query->where(function ($query) use ($groupedOrClauseFilters) {
                 foreach ($groupedOrClauseFilters as $column => $search) {
                     $query->orWhere(function ($query) use ($column, $search) {
