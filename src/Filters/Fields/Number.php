@@ -78,16 +78,16 @@ class Number extends Field implements FieldContract
         $strategyListRequiringTerm = implode(',', array_diff(self::STRATEGIES, self::STRATEGIES_WITHOUT_TERM));
 
         return [
-            $fieldName => 'array',
-            $fieldName .'.strategy' => 'required_with:'. $fieldName .'|in:'. $strategyList,
-            $fieldName .'.second_term' => 'nullable|required_if:'. $fieldName .'.select,between|numeric',
-            $fieldName .'.term' => [
+            'search.' . $fieldName => 'array',
+            'search.' . $fieldName .'.strategy' => 'required_with:'. $fieldName .'|in:'. $strategyList,
+            'search.' . $fieldName .'.second_term' => 'nullable|required_if:'. $fieldName .'.select,between|numeric',
+            'search.' . $fieldName .'.term' => [
                 'nullable',
                 'required_if:'. $fieldName . '.strategy,' . $strategyListRequiringTerm,
                 'flan_integer_if:' . $fieldName .'.strategy,equals,between,bigger,lower,different',
                 'flan_array_if:' . $fieldName .'.strategy,not_in',
             ],
-            $fieldName .'.term.*' => 'nullable|integer',
+            'search.' . $fieldName .'.term.*' => 'nullable|integer',
         ];
     }
 }

@@ -25,8 +25,8 @@ class Select extends Field implements FieldContract
     public static function getRules(string $fieldName): array
     {
         return [
-            $fieldName => 'array',
-            $fieldName .'.term' => 'nullable|string',
+            'search.' . $fieldName => 'array',
+            'search.' . $fieldName .'.term' => 'nullable|string',
         ];
     }
 }

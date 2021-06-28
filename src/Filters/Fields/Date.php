@@ -88,10 +88,10 @@ class Date extends Field implements FieldContract
         $strategyList = implode(',', self::STRATEGIES);
 
         return [
-            $fieldName => 'array',
-            $fieldName . '.strategy' => 'required_with:' . $fieldName . '|string|in:' . $strategyList,
-            $fieldName . '.date' => 'nullable|required_if:' . $fieldName . '.strategy,equals|date_format:Y-m-d',
-            $fieldName . '.second_date' => 'nullable|required_if:' . $fieldName . '.strategy,between|date_format:Y-m-d',
+            'search.' . $fieldName => 'array',
+            'search.' . $fieldName . '.strategy' => 'required_with:' . $fieldName . '|string|in:' . $strategyList,
+            'search.' . $fieldName . '.date' => 'nullable|required_if:' . $fieldName . '.strategy,equals|date_format:Y-m-d',
+            'search.' . $fieldName . '.second_date' => 'nullable|required_if:' . $fieldName . '.strategy,between|date_format:Y-m-d',
         ];
     }
 }

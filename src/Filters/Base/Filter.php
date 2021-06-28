@@ -5,6 +5,7 @@ namespace WebId\Flan\Filters\Base;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Query\Builder;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -37,6 +38,9 @@ abstract class Filter
     /** @var array<int, array> */
     protected $definition;
 
+    /** @var array<string> */
+    protected $groupedOrClause = [];
+
     /**
      * @param Model $model
      */
@@ -66,6 +70,7 @@ abstract class Filter
     {
         $build = $this
             ->select($inputs['fields'])
+            ->groupedOrClauseColumns($inputs['groupedOrClause'] ?? [])
             ->filter($this->getUsableFilters($inputs))
             ->orderBy($inputs['sortBy'] ?? null)
             ->sort($inputs['descending'] ?? false);
@@ -147,6 +152,21 @@ abstract class Filter
         if (in_array($this->getFieldType($field), ['date', 'datetime'])) {
             $this->orderBy = $this->getFieldColumnName($field);
         }
+
+        return $this;
+    }
+
+    /**
+     * @param array<string> $columns
+     * @return $this
+     */
+    public function groupedOrClauseColumns(array $columns = [])
+    {
+        if (empty($columns)) {
+            return $this;
+        }
+
+        $this->groupedOrClause = $columns;
 
         return $this;
     }
@@ -239,14 +259,33 @@ abstract class Filter
     private function querySearches(): void
     {
         $filters = $this->filterSearchesByActiveColumns();
+        $groupedOrClauseFilters = [];
 
         foreach ($filters as $column => $search) {
+            if (in_array($column, $this->groupedOrClause)) {
+                $groupedOrClauseFilters[$column] = $search;
+                unset($filters[$column]);
+
+                continue;
+            }
+
             $field = $this->getFieldByName($column);
             $column = $this->getQueryableColumnNameForWhereStatement($field);
-
             $fieldClass = FieldFactory::create($this->getFieldType($field), $this->query);
-
             $fieldClass->query($search, $column);
+        }
+
+        if (! empty($groupedOrClauseFilters)) {
+            $this->query->where(function ($query) use ($groupedOrClauseFilters) {
+                foreach ($groupedOrClauseFilters as $column => $search) {
+                    $query->orWhere(function ($query) use ($column, $search) {
+                        $field = $this->getFieldByName($column);
+                        $column = $this->getQueryableColumnNameForWhereStatement($field);
+                        $fieldClass = FieldFactory::create($this->getFieldType($field), $query);
+                        $fieldClass->query($search, $column);
+                    });
+                }
+            });
         }
 
         $this->queryNotSoftDeleted();
@@ -336,13 +375,17 @@ abstract class Filter
      * @param array<string, mixed> $inputs
      * @return array<string, mixed>
      */
-    private function getUsableFilters($inputs)
+    private function getUsableFilters(array $inputs): array
     {
         $names = array_column($this->definition, 'name');
+        $search = Arr::get($inputs, 'search', []);
 
-        return array_filter($inputs, function ($key) use ($names) {
+        /** @var array<string, mixed> $filters */
+        $filters = array_filter($search, function ($key) use ($names) {
             return in_array($key, $names);
         }, ARRAY_FILTER_USE_KEY);
+
+        return $filters;
     }
 
     private function queryNotSoftDeleted(): void

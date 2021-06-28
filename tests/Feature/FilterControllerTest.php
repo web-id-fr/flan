@@ -82,7 +82,6 @@ class FilterControllerTest extends TestCase
     /** @test */
     public function it_can_post_basic_filter(): void
     {
-        $this->withoutExceptionHandling();
         $response = $this->post(route(self::_ROUTE_FILTER), [
             'page' => 1,
             'rowsPerPage' => 10,
@@ -122,7 +121,7 @@ class FilterControllerTest extends TestCase
             'rowsPerPage' => 10,
             'filter_name' => 'pizzas',
             'fields' => [
-                "name",
+                "name", "count_ingredients",
             ],
             'sortBy' => 'name',
             'descending' => 1,
@@ -135,6 +134,60 @@ class FilterControllerTest extends TestCase
         $this->assertEquals('Margherita', $data[1]['name']);
         $this->assertEquals('Diavola', $data[2]['name']);
         $this->assertEquals('Capricciosa', $data[3]['name']);
+    }
+
+    /** @test */
+    public function it_can_post_filter_complex(): void
+    {
+        $response = $this->post(route(self::_ROUTE_FILTER), [
+            'filter_name' => 'pizzas',
+            'page' => 2,
+            'rowsPerPage' => 1,
+            'fields' => ['name', 'price'],
+            'sortBy' => 'name',
+            'descending' => 1,
+            'search' => [
+                'name' => [
+                    'strategy' => 'contains',
+                    'term' => 'ol',
+                ],
+            ],
+        ])
+            ->assertSuccessful();
+
+        $data = $response->json('data');
+        $this->assertCount(1, $data);
+        $this->assertEquals('Diavola', $data[0]['name']);
+    }
+
+    /** @test */
+    public function it_can_post_filter_with_or_param(): void
+    {
+        $response = $this->post(route(self::_ROUTE_FILTER), [
+            'filter_name' => 'pizzas',
+            'page' => 1,
+            'rowsPerPage' => 5,
+            'fields' => ['name', 'price'],
+            'sortBy' => 'name',
+            'descending' => 1,
+            'search' => [
+                'name' => [
+                    'strategy' => 'contains',
+                    'term' => 'erita',
+                ],
+                'price' => [
+                    'strategy' => 'equals',
+                    'term' => 10.20,
+                ],
+            ],
+            'groupedOrClause' => ['name', 'price'],
+        ])
+            ->assertSuccessful();
+
+        $data = $response->json('data');
+        $this->assertCount(2, $data);
+        $this->assertEquals('Margherita', $data[0]['name']);
+        $this->assertEquals(10.20, $data[1]['price']);
     }
 
     /** @test */

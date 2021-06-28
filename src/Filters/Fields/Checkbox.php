@@ -29,8 +29,8 @@ class Checkbox extends Field implements FieldContract
     public static function getRules(string $fieldName): array
     {
         return [
-            $fieldName => 'array',
-            $fieldName .'.*' => 'string',
+            'search.' . $fieldName => 'array',
+            'search.' . $fieldName .'.*' => 'string',
         ];
     }
 }
