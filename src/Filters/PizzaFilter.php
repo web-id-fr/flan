@@ -142,7 +142,7 @@ class PizzaFilter extends Filter
                                 'value' => 3,
                                 'text' => 'Vegan',
                             ],
-                        ]
+                        ],
                     ],
                 ],
                 [
@@ -162,7 +162,7 @@ class PizzaFilter extends Filter
                                 'value' => 'Vegan',
                                 'text' => 'Vegan',
                             ],
-                        ]
+                        ],
                     ],
                 ],
             ],
