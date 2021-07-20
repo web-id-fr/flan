@@ -43,6 +43,14 @@ class PizzaFilter extends Filter
                     ->where('pizza_id', 'pizzas.id');
             },
         ]);
+
+        $this->setDefinition('feed_mode', [
+            'sub_select' => function () {
+                return DB::table('feed_modes')
+                    ->selectRaw('name')
+                    ->where('id', 'pizzas.feed_mode_id');
+            },
+        ]);
     }
 
     /**
@@ -110,11 +118,51 @@ class PizzaFilter extends Filter
                     ],
                 ],
                 [
-                    'text' => 'number of ingredients',
+                    'text' => 'Number of ingredients',
                     'name' => 'count_ingredients',
                     'active' => true,
                     'field' => [
                         'type' => 'number',
+                    ],
+                ],
+                [
+                    'text' => 'Feed mode',
+                    'name' => 'feed_mode_id',
+                    'active' => true,
+                    'field' => [
+                        'type' => 'select',
+                        'options' => [
+                            [
+                                'value' => 1,
+                                'text' => 'Omnivore',
+                            ], [
+                                'value' => 2,
+                                'text' => 'Vegetarian',
+                            ], [
+                                'value' => 3,
+                                'text' => 'Vegan',
+                            ],
+                        ]
+                    ],
+                ],
+                [
+                    'text' => 'Feed mode (by relation)',
+                    'name' => 'feed_mode',
+                    'active' => true,
+                    'field' => [
+                        'type' => 'select',
+                        'options' => [
+                            [
+                                'value' => 'Omnivore',
+                                'text' => 'Omnivore',
+                            ], [
+                                'value' => 'Vegetarian',
+                                'text' => 'Vegetarian',
+                            ], [
+                                'value' => 'Vegan',
+                                'text' => 'Vegan',
+                            ],
+                        ]
                     ],
                 ],
             ],
