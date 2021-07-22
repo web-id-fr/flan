@@ -90,3 +90,42 @@ return [
     // [ ... ],
 ],
 ```
+
+## Filter class
+
+### The `custom_select` definition attribute
+
+Let's say you are defining a `BookFilter` class, and you want to format the number of pages value:
+
+```php
+$this->setDefinition('number_of_pages', [
+    'custom_select' => 'CONCAT(`number_of_pages`, " pages")',
+]);
+```
+
+### The `join` definition attribute
+
+Let's say you are defining a `BookFilter` class, and you want to be able to filter on the book's author birth city for example. 
+
+If you want to use a custom select with a join clause, in your Filter class constructor you can do this:
+
+```php
+$this->setDefinition('author_birth_city', [
+    'join' => 'leftJoinAuthorsTable',
+    'custom_select' => '`authors`.`birth_city`',
+]);
+```
+
+Then, you need to add a method named after your `join` parameter to apply the join on the query, in this example:
+
+```php
+private function leftJoinAuthorsTable(): void
+{
+    $this->query->leftJoin(
+        'authors',
+        'books.author_id',
+        '=',
+        'authors.id'
+    );
+}
+```
