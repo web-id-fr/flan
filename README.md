@@ -119,7 +119,7 @@ $this->setDefinition('author_birth_city', [
 Then, you need to add a method named after your `join` parameter to apply the join on the query, in this example:
 
 ```php
-private function leftJoinAuthorsTable(): void
+protected function leftJoinAuthorsTable(): void
 {
     $this->query->leftJoin(
         'authors',
