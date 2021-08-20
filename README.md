@@ -69,7 +69,8 @@ return [
 
 * `filters.*.text` is the HTML input label
 * `filters.*.name` is the HTML input name attribute
-* `filters.*.active` determines if the input will be shown on the page
+* `filters.*.active` determines if the data will be shown in the table
+* `filters.*.filterable` determines if the filter input will be shown for this column
 * `filters.*.field` contains options to apply on the input
 * `filters.*.field.type` is the input type, it can be one of those: `checkbox`, `date`, `number`, `select`, `text`
 
