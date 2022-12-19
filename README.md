@@ -130,3 +130,12 @@ protected function leftJoinAuthorsTable(): void
     );
 }
 ```
+
+## Credits
+
+- [Leo Tiollier](https://github.com/LTiollier)
+- [Julien Cauvin](https://github.com/jucau)
+
+## License
+
+The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
